@@ -1,0 +1,36 @@
+def PearsonCorrelation():
+    #Insert values
+    Q1R, Q2R = BuildQuery()
+    #Test to see if there is an equal number of variables, if not prompts user to re-enter
+    if(len(Q2R)==len(Q1R)):
+        A=[]
+        B=[]
+        ab=[]
+        As=[]
+        Bs=[]
+        AVar1=0
+        AVar2=0
+        for num in Q1R:
+            Q1R[AVar1]=int(Q1R[AVar1])
+            Q2R[AVar1]=int(Q2R[AVar1])	
+            AVar1+=1
+            #Turns all test numbers to integers
+        for num in Q1R:
+            As.append((num-((sum(Q1R))/(len(Q1R))))**2)
+        for num in Q2R:
+            Bs.append((num-((sum(Q2R))/(len(Q2R))))**2)
+        SDA=(math.sqrt(sum(As)/len(As)))
+        SDB=(math.sqrt(sum(Bs)/len(Bs)))
+        print("The standard deviation for A is " +(str(SDA)))
+        print("The standard deviation for B is " +(str(SDB)))
+        for num in Q1R:
+            A.append(num-(sum(Q1R))/(len(Q1R)))
+        for num in Q2R:
+            B.append(num-(sum(Q2R))/(len(Q2R)))
+        for num in A:
+            ab.append(A[AVar2]*B[AVar2])
+            AVar2+=1
+        Cov=((sum(ab))/(len(ab)))
+        print("The pearson correlation coefficient is " + str(Cov/(SDA*SDB)))
+    else:
+        print("Please ensure there is an equal number of data points for both lists")
